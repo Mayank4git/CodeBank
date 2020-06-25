@@ -23,7 +23,7 @@ public:
   void addtohead(int value)
   {
    
-  struct node *newNode=new node;
+  node *newNode=new node;
    
     newNode -> data = value;
     newNode -> prev = NULL;
@@ -109,16 +109,95 @@ void deleteEnd()
 }
 
 
-void reverse()
+void insert_specified(int item)  
+{  
+     
+    node *ptr = new node;  
+   node *temp;   
+   int loc;   
+   if(ptr == NULL)  
+   {  
+       cout<<"\nOVERFLOW";  
+   }  
+   else  
+   {  
+       cout<<"Enter the location\n";  
+       cin>>loc;   
+       temp=head;  
+       for(int i=0;i<loc;i++)  
+       {  
+           temp = temp->next;   
+       }  
+       ptr->data = item;  
+       ptr->next = temp->next;  
+       ptr -> prev = temp;  
+       temp->next = ptr;  
+       temp->next->prev=ptr;  
+       cout<<"Node Inserted at the desired position \n";  
+   }  
+}
+
+void search_element(int data)
 {
-	node *trav;
-	trav = tail;
-	while(trav != NULL)
-	{
-		cout<<trav->data<<endl;
-		trav = trav->prev;
-	}
-	cout<<"successful reversed"<<endl;
+     node * temp = new node;
+    temp = head;
+    int pos = 0;
+    int flag=0;
+    while(temp != NULL)
+    {
+        if(temp -> data == data)   // Element is found
+        {
+            
+            flag=1;//If found, print and exit
+            break;
+        
+        }
+        else
+        {
+            temp = temp ->next;         //If not found, traverse the list
+            pos++;
+        }
+    }
+    if(flag==1)
+    {
+        cout<<"\nThe element  is  found in the list";
+    }
+    else
+    {
+    cout<<"\nThe element  is not found in the list";
+    }
+
+   
+}
+
+
+
+void deleteFromN(int position)
+{
+    node *current;
+    current = head;
+    for(int i=1; i<position && current!=NULL; i++)
+    {
+        current = current->next;
+    }
+
+    if(position == 0)
+    {
+       deleteBeginning();
+    }
+    else if(current != NULL)
+    {
+        current->prev->next = current->next;
+        current->next->prev = current->prev;
+
+        delete current; 
+
+        cout<<"SUCCESSFULLY DELETED NODE FROM POSITION.\n";
+    }
+    else
+    {
+        printf("Invalid position!\n");
+    }
 }
 
  void display()  
@@ -149,9 +228,11 @@ int main()
  	cout<<"1. add to head"<<endl;
  	cout<<"2. add to end"<<endl;
  	cout<<"3. delete from head"<<endl;
-    cout<<"4. delete from end"<<endl;
+  cout<<"4. delete from end"<<endl;
  	cout<<"5. display"<<endl;
- 	cout<<"6. reverse"<<endl;
+ 	cout<<"6. insert  at desired position"<<endl;
+  cout<<"7. search  in doubly linked list"<<endl;
+  cout<<"8. delete from desired position"<<endl;
     cin>>n;
     switch(n)
     {
@@ -170,10 +251,10 @@ int main()
     	d.insertAtEnd(item);
     	break;
        
-       case 3:
+      case 3:
        d.deleteBeginning();
        break;
-        case 4:
+      case 4:
        d.deleteEnd();
        break;
 
@@ -183,8 +264,26 @@ int main()
     	break;
 
     	case 6:
-    	d.reverse();
+      int newvalue;
+      cout<<"enter value for desired position\n";
+      cin>>newvalue;
+    	d.insert_specified(newvalue);
     	break;
+
+      case 7:
+      int newvalue1;
+      cout<<"enter value for searching position\n";
+      cin>>newvalue1;
+      d.search_element(newvalue1);
+      break;
+
+      case 8:
+      int newvalue2;
+      cout<<"enter position desired for deletion \n";
+      cin>>newvalue2;
+      d.deleteFromN(newvalue2);
+      break;
+
     	default:
     	cout<<"exit successfull";
 
