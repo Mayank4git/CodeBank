@@ -127,23 +127,34 @@ void search(int key)
     }
     cout<<"item not found in list\n";
 }
-void printReverse(Node* head)  
-{  
-     
-    if (head == NULL)  
-    return;  
-  
-    // print the list after head node  
-    printReverse(head->next);  
-  
-    // After everything else is printed, print head  
-    cout << head->data << "->"<<" ";  
+
+void Delete(int anypos)
+{
+    
+    node* temp1 = head;
+    if(anypos == 1){
+        head = temp1->next;
+        delete temp1;
+        cout<<"succesfully deleted from desired positon in list\n"<<endl;
+    }
+    else
+    {
+    for(int i=0;i<anypos-2;i++)
+    {
+        temp1 = temp1->next;
+    }
+    
+    node* temp2 = temp1->next; 
+    temp1->next = temp2->next; 
+    delete temp2;
+    cout<<"succesfully deleted from desired positon in list\n"<<endl;
+}
+
 }
 
 
 
-
-    void display()
+void display()
     {
         node *tmp;
         tmp = head;
@@ -166,7 +177,7 @@ int main()
         cout<<"4. delete from front/begin"<<endl;
         cout<<"5. delete from end/last "<<endl;
         cout<<"6. search in list  "<<endl;
-        cout<<"7. reverse list  "<<endl;
+        cout<<"7. delete from desired position  "<<endl;
 		cout<<"8. display"<<endl;
 		cin>>n;
 		switch(n)
@@ -202,8 +213,10 @@ int main()
 			 l.search(value);
 			 break;
 			  case 7:
-			 
-			 l.printReverse(head);
+			 int delpos;
+			 cout<<"enter position you want to delete"<<endl;
+			 cin>>delpos;
+			 l.Delete(delpos);
 			 break;
 
 			 case 8:
