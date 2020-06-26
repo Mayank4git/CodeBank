@@ -19,31 +19,25 @@ class singlelist
         node *tmp = new node;
         tmp->data = n;
         tmp->next = NULL;
-
         if(head == NULL)
         {
             head = tmp;
             tail = tmp;
-        }
-        else
-        {
+	}else
+	{
             tail->next = tmp;
             tail = tail->next;
         }
         cout<<"succesfully added to tail";
     }
   void addtohead(int val)
-    {
-      
-      node *new_node = new node;
+  {    node *new_node = new node;
       new_node->data = val;
       new_node->next = NULL;
       if (head == NULL)
       {
         head = new_node;
-      } 
-    
-      else
+      } else
       {
         new_node->next = head;
         head= new_node;
@@ -127,11 +121,8 @@ void search(int key)
     }
     cout<<"item not found in list\n";
 }
-
 void Delete(int anypos)
-{
-    
-    node* temp1 = head;
+{    node* temp1 = head;
     if(anypos == 1){
         head = temp1->next;
         delete temp1;
@@ -143,17 +134,22 @@ void Delete(int anypos)
     {
         temp1 = temp1->next;
     }
-    
     node* temp2 = temp1->next; 
     temp1->next = temp2->next; 
     delete temp2;
     cout<<"succesfully deleted from desired positon in list\n"<<endl;
 }
-
 }
-
-
-
+void reverse() {
+      node *curNode = head ,*nxtNode;
+      head = NULL;
+    while (curNode != NULL) {
+        nxtNode = curNode->next;
+        curNode->next = head;
+        head = curNode;
+        curNode = nxtNode;
+    }
+}
 void display()
     {
         node *tmp;
@@ -179,10 +175,11 @@ int main()
         cout<<"6. search in list  "<<endl;
         cout<<"7. delete from desired position  "<<endl;
 		cout<<"8. display"<<endl;
+		cout<<"9. reverse"<<endl;
 		cin>>n;
 		switch(n)
-		{
-			 case 1:
+{    
+             case 1:
 			 int item;
 			 cout<<"enter item to tail"<<endl;
 			 cin>>item;
@@ -203,24 +200,28 @@ int main()
              case 4:
 			 l.begdelete();
 			 break;
-            case 5:
+             case 5:
 			l.end_delete();
 			 break;
-			 case 6:
+	     case 6:
 			 int value;
 			 cout<<"enter item you want to search"<<endl;
 			 cin>>value;
 			 l.search(value);
 			 break;
-			  case 7:
+	     case 7:
 			 int delpos;
 			 cout<<"enter position you want to delete"<<endl;
 			 cin>>delpos;
 			 l.Delete(delpos);
 			 break;
 
-			 case 8:
+	     case 8:
 			 l.display();
+			 break;
+
+	     case 9:
+			 l.reverse();
 			 break;
 			 default:
 			 cout<<"nothing"<<endl;
