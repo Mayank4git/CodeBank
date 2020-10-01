@@ -1,2 +1,4 @@
 # CodeBank
-All basic examples C++ for beginners from basic topic to advance one by one.
+This repository contains example code for programming concepts with their code in C++.
+Programming concepts such as polymorphism, function overloading, fucntion overrding, inheritance, classes etc.
+Hope these are helpful.
