@@ -6,8 +6,8 @@ struct node
 	node *prev;
 	node *next;
 };
-class doublylist
-{
+
+class doublylist{
 private:
 	node *head,*tail;
 public:
@@ -33,8 +33,10 @@ public:
     }
     cout<<"\nInsertion successful at the head"<<endl;
  }
+
 void insertAtEnd(int v)
-{   node *newNode=new node;
+{  
+	node *newNode=new node;
    newNode -> data = v;
    newNode -> next = NULL;
    if(head == NULL)
