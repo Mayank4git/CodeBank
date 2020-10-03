@@ -2,33 +2,28 @@
 
 using namespace std;
 
-class Rectangle
-{
+class Rectangle{
 	public:
-		void printArea(int x, int y)
-		{
-			cout << x * y << endl;
+	
+		int add(int x, int y){
+			return x+y;
 		}
-		void printArea(int x)
-		{
-			cout << x * x << endl;
+		int add(int x, int y=0){
+			return x+y;
 		}
-		void printArea(int x, double y)
-		{
-			cout << x * y << endl;
-		}
-		void printArea(double x)
-		{
-			cout << x * x << endl;
+		int printArea(int x, int y, int z){
+			return x+y+z;
 		}
 };
 
 int main()
 {
 	Rectangle rt;
-	rt.printArea(2,4);
-	rt.printArea(2,5.1);
-	rt.printArea(10);
-	rt.printArea(2.3);
+	
+	cout<<rt.add(1,2);
+	cout<<rt.add(1);
+	cout<<rt.add(1,2,3);
+	
+	
 	return 0;
 }
