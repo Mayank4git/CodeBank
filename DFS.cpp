@@ -3,8 +3,7 @@ using namespace std;
   
 // Graph class represents a directed graph 
 // using adjacency list representation 
-class Graph 
-{ 
+class Graph { 
     int V;    // No. of vertices 
   
     // Pointer to an array containing 
@@ -13,6 +12,7 @@ class Graph
   
     // A recursive function used by DFS 
     void DFSUtil(int v, bool visited[]); 
+  
 public: 
     Graph(int V);   // Constructor 
   
@@ -22,42 +22,40 @@ public:
     // DFS traversal of the vertices 
     // reachable from v 
     void DFS(int v); 
+  
 }; 
   
-Graph::Graph(int V) 
-{ 
+Graph::Graph(int V) { 
     this->V = V; 
     adj = new list<int>[V]; 
 } 
   
-void Graph::addEdge(int v, int w) 
-{ 
+void Graph::addEdge(int v, int w) { 
     adj[v].push_back(w); // Add w to v’s list. 
 } 
   
-void Graph::DFSUtil(int v, bool visited[]) 
-{ 
+void Graph::DFSUtil(int v, bool visited[]) { 
     // Mark the current node as visited and 
     // print it 
     visited[v] = true; 
     cout << v << " "; 
   
-    // Recur for all the vertices adjacent 
+    // Recur for all the vertices adjacent neighbors
     // to this vertex 
-    list<int>::iterator i; 
-    for (i = adj[v].begin(); i != adj[v].end(); ++i) 
-        if (!visited[*i]) 
-            DFSUtil(*i, visited); 
+    for ( int neighbor : adj[v]){ 
+        if (!visited[neighbor]){ 
+            DFSUtil(neighbor, visited);
+        }
+    }
 } 
   
 // DFS traversal of the vertices reachable from v. 
 // It uses recursive DFSUtil() 
-void Graph::DFS(int v) 
-{ 
+void Graph::DFS(int v) { 
     // Mark all the vertices as not visited 
-    bool *visited = new bool[V]; 
-    for (int i = 0; i < V; i++) 
-        visited[i] = false; 
+    bool visited[V]; 
+    
+    memset(visited, false, sizeof(visited));
   
     // Call the recursive helper function 
     // to print DFS traversal 
@@ -65,8 +63,7 @@ void Graph::DFS(int v)
 } 
   
 // Driver code 
-int main() 
-{ 
+int main() { 
     // Create a graph given in the above diagram 
     Graph g(4); 
     g.addEdge(0, 1); 
