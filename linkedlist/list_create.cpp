@@ -2,44 +2,39 @@
 
 using namespace std;
 
-struct node
-{
+struct node{
     int data;
     node *next;
+    
+    node(int n){
+        data = n;
+        next = NULL;
+    }
 };
 
-class linked_list
-{
+class linked_list{
 private:
     node *head,*tail;
 public:
-    linked_list()
-    {
+    linked_list(){
         head = NULL;
         tail = NULL;
     }
 
-    void add_node(int n)
-    {
-        node *tmp = new node;
-        tmp->data = n;
-        tmp->next = NULL;
+    void add_node(int n){
+        node *tmp = new node(n);
 
-        if(head == NULL)
-        {
+        if(head == NULL){
             head = tmp;
             tail = tmp;
-        }
-        else
-        {
+        }else{
             tail->next = tmp;
             tail = tail->next;
         }
     }
 };
 
-int main()
-{
+int main(){
     linked_list a;
     a.add_node(1);
     a.add_node(2);
