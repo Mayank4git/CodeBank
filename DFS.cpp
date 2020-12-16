@@ -1,8 +1,7 @@
 #include<bits/stdc++.h> 
 using namespace std; 
-  
-// Graph class represents a directed graph 
-// using adjacency list representation 
+
+//  Graph class represents a directed graph using adjacency list representation 
 class Graph { 
     int V;    // No. of vertices 
   
