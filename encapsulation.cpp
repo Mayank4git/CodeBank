@@ -6,10 +6,10 @@ private:
     int num;
     char ch;
 public:
-    int getNum() const {
+    int getNum() {
         return num;
     }
-    char getCh() const {
+    char getCh() {
         return ch;
     }
 
