@@ -1,7 +1,7 @@
 
 #include<iostream>
 using namespace std;
-class ExampleEncap {
+class ExampleEncap{
 private:
    int num;
    char ch;
@@ -27,5 +27,4 @@ int main(){
    cout<<obj.getNum()<<endl;
    cout<<obj.getCh()<<endl;
    return 0;
-
 }
