@@ -18,10 +18,106 @@ public:
     }
     void addtohead(int value)
     {
-        node *newNode=new node;
-        newNode -> data = value;
-        newNode -> prev = NULL;
-        if(head == NULL)
+       newNode -> next = head;
+       head = newNode;
+    }
+    cout<<"\nInsertion successful at the head"<<endl;
+ }
+
+void insertAtEnd(int v)
+{  
+	node *newNode=new node;
+   newNode -> data = v;
+   newNode -> next = NULL;
+   if(head == NULL)
+   {
+      newNode -> prev= NULL;
+      head = newNode;
+   }
+   else
+   {  node *temp = head;
+      while(temp -> next != NULL)
+      temp = temp -> next;
+      temp -> next = newNode;
+      newNode -> prev = temp;
+   }
+   cout<<"\nInsertion success!!! at the end"<<endl;   
+}
+void deleteBeginning()
+{
+   if(head == NULL)
+      cout<<"List is Empty!!! Deletion not possible!!!"<<endl;
+   else
+   {
+      node *temp = head;
+      if(temp->prev== temp->next)
+      {
+         head = NULL;
+         delete temp;
+      }
+      else{
+         head = temp->next;
+         head->prev = NULL;
+         delete temp;
+      }
+      cout<<"Deletion success at the front"<<endl;
+   }
+}
+void deleteEnd()
+{
+   if(head == NULL)
+      cout<<"List is Empty!!! Deletion not possible"<<endl;
+   else
+   {
+      node *temp = head;
+      if(temp->prev == temp->next)
+      {
+         head = NULL;
+         delete temp;
+      }
+      else{
+         while(temp->next != NULL)
+            temp = temp->next;
+         temp->prev ->next = NULL;
+         delete temp;
+      }
+      cout<<"Deletion successful at the end "<<endl;
+   }
+}
+void insert_specified(int item)  
+{  node *ptr = new node;  
+   node *temp;   
+   int loc;   
+   if(ptr == NULL)  
+   {  
+       cout<<"\nOVERFLOW";  
+   }  
+   else  
+   {  
+       cout<<"Enter the location\n";  
+       cin>>loc;   
+       temp=head;  
+       for(int i=0;i<loc;i++)  
+       {  
+           temp = temp->next;   
+       }  
+       ptr->data = item;  
+       ptr->next = temp->next;  
+       ptr -> prev = temp;  
+       temp->next = ptr;  
+       temp->next->prev=ptr;  
+       cout<<"Node Inserted at the desired position \n";  
+   }  
+}
+void search_element(int data)
+{
+     node * temp = new node;
+    temp = head;
+    int pos = 0;
+    int flag=0;
+    while(temp != NULL)
+    {
+        if(temp -> data == data)   // Element is found
         {
             newNode -> next = NULL;
             head = newNode;
