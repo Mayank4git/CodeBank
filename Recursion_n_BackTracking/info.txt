@@ -1,0 +1,41 @@
+What is Recursion?
+
+When a function gives a call to itself is recursion.
+(OR) A function that calls itself is known as a recursive function. And, this technique is known as recursion.
+
+Working of Recursion in C++
+void recurse()
+{
+    ... .. ...
+    recurse();
+    ... .. ...
+}
+
+int main()
+{
+    ... .. ...
+    recurse();
+    ... .. ...
+}
+
+Advantages of C++ Recursion
+
+It makes our code shorter and cleaner.
+Recursion is required in problems concerning data structures and advanced algorithms, such as Graph and Tree Traversal
+
+Disadvantages of C++ Recursion
+
+It takes a lot of stack space compared to an iterative program.
+It uses more processor time.
+It can be more difficult to debug compared to an equivalent iterative program.
+
+Types of Recursion:
+
+Head Recursion : when recursive call is before the processing part of the recursion block.
+Tail Recursion : when recursive call is in the end of the block after base condition.
+
+Important parts/components of recursion :
+1) Base Case
+2) Recursive Relation
+3) Processing part
+

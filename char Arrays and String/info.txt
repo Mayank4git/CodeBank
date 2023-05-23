@@ -1,0 +1,47 @@
+char Array: An array of characters.
+
+Note : strlen() == when we have char array[]
+
+otherwise lenght() == when we have string directly.
+
+String are terminated by null character i.e. '\0' and  (ASCII value of null character is 0).
+
+In char array[], we can explicity take extra space for null character and it depends.
+but in string class it is automatically there in the end of the string.
+
+//to use string in-built functions include<string.h>
+1)strlen() 2)strcmp 3)strcpy
+
+int main(){
+
+// 	char array[6] = {'m','a','y','a','n','k','\0'};
+// 	cout << sizeof(array)/sizeof(array[0]);
+    char ch[100];
+    cout << "enter name" << endl;
+    cin >> ch;
+    cout << "your name is :" << endl;
+    cout << ch;
+}
+
+Alternative ways of defining a string
+char str[4] = "C++";
+     
+char str[] = {'C','+','+','\0'};
+
+char str[4] = {'C','+','+','\0'};
+
+Notice that, in the example only "Mayank" is displayed instead of "Mayank Kaushik".
+
+This is because the extraction operator >> works as scanf() in C and considers a "space/tab/enter/new line character" has a terminating character.
+
+In this program, a string str is declared. Then the string is asked from the user.
+
+Instead of using cin>> or cin.get() function, you can get the entered line of text using getline().
+
+cin.getline(arr,size) function takes the input stream then you can get "Mayank Kaushik" as ouput in cpp program.
+
+cin.getline(fruits, 50); // for char array[]
+getline(cin,name) // for string class and header file
+
+#Array are passed by reference in functions,it means changes are reflected in actual place in memory. 
+

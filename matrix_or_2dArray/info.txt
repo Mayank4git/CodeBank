@@ -1,0 +1,65 @@
+A matrix or 2D Array has data in Rows and Columns format but in computer memory It is stored as 1D Array is stored.
+
+to find index of 2D Array element in the memory can be found using formulae :
+
+index/location of ele = c + i * j
+c  =  no. of columns
+i  =  row number of ele
+j  =  column number of ele
+
+ex :-
+		c0 c1 c2
+row 0 = 2  3  4 
+row 1 = 3  4  5
+row 2 = 5  6  7
+
+normally it is define / initialise as
+
+int arr[3][3] = {{1,2,3},{4,5,6},{7,8,9}};
+3 = no of rows and 3 = no of columns
+
+it is matrix of 3 * 3 so total no of element in matrix will be 9.
+
+lets find index of element 4 in the 1D array then, it is in 0th row and 2nd column
+
+c * i + j = 3 * 0 + 2 = 2 so in linear or 1d array ele will be at  2 index.
+
+In Cpp for matrix pr 2d array, we use vector of vectors and syntax is :
+
+vector<vector<int> >arr(rows, vector<int>(col,0));
+vector =  outer vector
+vector<int> =  inner vector
+
+vector<int>(col,0) = col is basically represent size of vector and with value 0, it is initialised.
+
+In Vectors, no of rows size = arr.size() and no of col size = arr[0].size();
+
+IMP vector functions :
+
+push_back(), pop_back(), size(), capacity(), empty()
+
+capacity()  = check the overall size of a vector
+size()      =  no of element present currently in a vector
+
+vector<int> arr(n,-8)
+C++ Vector Initialization :=
+
+// Initializer list
+vector<int> vector1 = {1, 2, 3, 4, 5};
+
+// Uniform initialization
+vector<int> vector2 {1, 2, 3, 4, 5};
+ 
+(OR) vector<int> vector3(5, 12);
+Here, 5 is the size of the vector and 12 is the value.
+
+
+#NOTE : a vector doubles its size when ele are inserted in it. suppose we make a vector of size  = 5 then it doubles itself to size of 10 dynamically.
+
+
+
+
+
+
+
+

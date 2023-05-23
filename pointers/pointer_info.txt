@@ -1,0 +1,325 @@
+What is pointer?
+A pointer is a variable that stores/points address of another variable which have some value in it.
+
+syntax : 
+data_type* variable_name = &variabl_whose_address_is_to_stored.
+
+& (ampersand sign)	Address operator	Determine the address of a variable.
+∗ (asterisk sign)	Indirection operator	Access the value of an address.
+
+ex :
+int ∗   a; //pointer to int    
+char ∗  c; //pointer to char
+
+Advantages of Pointers:
+===============================
+
+Pointers reduce the code and improve performance. They are used to retrieve strings, trees, arrays, structures, and functions.
+Pointers allow us to return multiple values from functions.
+In addition to this, pointers allow us to access a memory location in the computer’s memory.
+Dynamic memory allocation.
+
+ex: 
+int a = 5;
+above line will create a block of 4bytes in memory having value '5' on a memory address.
+int* ptr = &a;
+above line will store the address of the variable 'a'.
+
+note : in memory,variable with its address is stored in symbol table and we can not make any changes in symbol table.
+
+WAP for pointer knowledge.
+---------------------------
+
+#include <iostream>
+using namespace std;
+int main(){
+
+int a = 5;
+int* ptr = &a;
+
+cout << "value of a " << a << endl;
+cout << "address of a " << &a << endl;
+cout << "value stored in ptr pointer variable which is basically address of a " << ptr << endl;
+cout << "access value stored at address stored in ptr pointer variable " << *ptr;
+
+}
+
+NOTE : 1) *ptr = access value stored at ptr
+	   2) &ptr = address of ptr
+	   3) &a = address of a
+	   4) a = value of a
+	   5) ptr = value of ptr which is address of another variable.
+
+
+Invalid pointers
+A pointer should point to a valid address but not necessarily to valid elements (like for arrays). These are called invalid pointers. Uninitialized pointers are also invalid pointers.
+
+int *ptr1;
+int arr[10];
+int *ptr2 = arr+20;
+
+Here, ptr1 is uninitialized so it becomes an invalid pointer and ptr2 is out of bounds of arr so it also becomes an invalid pointer. (Note: invalid pointers do not necessarily raise compile errors)
+
+What is a null pointer?
+A null pointer is not merely an incorrect address; it also points nowhere. Here are two ways to mark a pointer as NULL:
+
+int *ptr1 = 0;  
+int *ptr2 = NULL; 
+
+
+#copy one pointer to another pointers
+
+int a = 5;
+int* ptr = &a;
+int* cptr = ptr;
+
+int main()
+{
+
+int a = 5;
+int* ptr = &a;
+int* cptr = ptr;
+
+cout << "value of a " << a << endl;
+cout << "address of a " << &a << endl;
+cout << "value stored in ptr pointer variable which is basically address of a " << ptr << endl;
+cout << "access value stored at address stored in ptr pointer variable " << *ptr <<endl;
+cout << "value stored in cptr pointer variable which is basically address of a " << cptr << endl;
+cout << "access value stored at address stored in cptr pointer variable " << *cptr;
+
+}
+
+ARRAY NAMES AS POINTERS(ARRAY VS POINTERS)
+--------------------------------------------
+
+lets have an array as:
+
+int arr[6] = {5,4,3,2,1,7};
+
+lets have base address of given array is 104, then
+cout << arr[0] //output is 5
+cout << &arr[0] //output is 104
+cout << arr //output is 104 because it points to base address of the array.
+cout << &arr //output is 104 that is address of array mapped in symbol table.
+
+now we have example for array and basically 
+
+arr[i] <=> *(arr+i) you can write this also as i[arr] <=> *(i+arr) both will work same.
+
+Agr array k ander 5 element rkhe aur uske size mano 10 h to by default remaining mein '0' chala jata hein.
+
+int main(){
+
+int arr[6] = {1,2,3,4,5,6};
+cout << *arr << endl;//output will be element at zero index i.e. 1
+cout << *arr+1 <<endl;//output will be 2 because we are addind 1 to base address which is points to index 1 of array.
+cout << *(arr)+1 << endl;// work same as above statement and output is 2
+cout << *(arr+1) << endl;//work same as above statement and output is 2
+}
+
+Another Example for Array:
+suppose base address of given array is 104
+
+int arr[4] = {5,6,7,8};
+int* p = arr;
+int* q = arr+1;
+
+cout << arr //output is 104
+cout << &arr //output is 104
+cout << arr[0] //output 5
+cout << &arr[0] //output 104
+cout << p //output 104
+cout << *p //output 5
+cout << &p //output 104
+cout << q //output 108 because base_adress+1 =>104+1=108 each is of 4bytes block of array.
+cout << &q //output 316 suppose q pointer is at this address.
+cout << *q //output 6
+cout << *(p)+1 //output 6 because *(p)+1 = *(104)+1 = 5+1 = 6
+cout << *(q)+3 //output 9 because *(q)+3 = *(108)+3 = 6+3 = 9
+cout << *(q)+4 // segmentation fault/run-time error because of accessing out of memory index.
+
+
+//CHAR ARRAY BEHAVIOUR IS DIFFERENT IN CASE OF POINTERS USES.
+
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+
+char ch[10] = "sherBano";
+char* ptr = ch; // because it is a array of characters and ch contain base address
+
+cout << "value in ch " << ch << endl;
+cout << "value in ptr " << ptr << endl;
+cout << &ch << endl;
+cout << *(ch)+3 << endl;
+cout << &ptr << endl;
+cout << *(ptr + 3) << endl;
+cout <<   ptr + 2 << endl;
+cout <<  *ptr << endl;
+cout <<   ptr + 8;
+
+
+}
+
+///output is here :
+------------------------
+value in ch sherBano
+value in ptr sherBano
+0x7ffd44596c4e
+118
+0x7ffd44596c40
+r
+erBano
+s
+here is will print nothing because last character is null character in char array basically in output.
+
+if there is only char in input then
+
+Ex 2):
+
+char ch = 'k';
+char* ptr = &ch;
+cout << ptr;
+
+//output is here
+------------------------
+
+k/�^N�
+
+It is because with multiple garbage value with 'k' character.In string, null character is automatically there in end of given string but in case of array we have  not mentioned it so it will keep printing garbageb values untill gets null character. and its behaviour of cout to print string untill gets null character in string/char Arrays.
+
+Pointer with functions:
+-------------------------
+int solve(int* p){
+	
+	*p = *p + 10;// *(104) = *(104) + 10  = 5+10 = 15
+}
+
+int main(){
+	
+  int a = 5;
+  int* ptr = &a;
+  solve(ptr);
+  cout << a; //output is 15
+} 
+
+Array passed in function is passed by reference and operation in array are performing in actual memory space of given array.
+
+Note :
+
+char name[10] = "MAYANK"; //Good practice
+char* ch = "MAYANK"; //BAD practice
+
+cout << name; //output is MAYANK
+cout << ch; //output is MAYANK
+
+
+#####################################
+
+Double pointers : A pointer to a pointer variable 
+
+#include <iostream>
+using namespace std;
+int main()
+{
+
+ int a = 5;
+ int* p = &a;
+ int** q = &p;
+ 
+ cout << a << endl;
+ cout << &a << endl;
+ cout << p << endl;
+ cout << &p << endl;
+ cout << *p << endl;
+ cout << q << endl;
+ cout << *q << endl;
+ cout << **q <<endl;
+
+}
+ //output is here 
+
+5
+0x7ffd960387f4
+0x7ffd960387f4
+0x7ffd960387f8
+5
+0x7ffd960387f8
+0x7ffd960387f4
+5
+
+//**q = value present at location stored in *q then go value at that address.
+
+
+#include <iostream>
+using namespace std;
+
+void solve(int* ptr ){
+	
+	ptr = ptr +1; // it will add "1" to address stored in ptr pointer varible.
+
+    *ptr = *ptr + 1; // will change value of a and print "6" as output.
+}
+
+int main(){
+    int a = 5;
+    int* p = &a;
+    cout<< "befor " << endl;
+    cout << a << endl;
+    
+    solve(p);
+    cout << "after" <<endl;
+    cout << a;
+
+}
+
+RERFERENCE VARIABLE :
+
+A memory location with different name is refered using reference variable.
+
+int a = 5;
+int& b = a; //syntacx of reference variable pointing to same memory location i.e. "a".
+
+in case of reference variable no extra space is created in the memory.
+
+IMPORTANT EXAMPLE :
+--------------------
+void solve(int p){
+	a++;
+}
+
+
+int main(){
+	int a =5;
+	solve(a);
+	cout << a;
+}
+
+//output will be 5 only.
+In above example, a copy of a is passed to variable to p then changes are there in the the copied value but no change in actual memory location where a is stored.
+
+void solve(int& p){
+	a++;
+}
+
+int main(){
+	int a =5;
+	solve(a);
+	cout << a;
+}
+
+//output will be 6 but not 5 ok.
+
+In above example, (int& p) denotating same memory location which is "a" and all changes will be reflected in same memory location block.
+
+
+
+
+
+
+
+
+

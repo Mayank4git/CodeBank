@@ -1,0 +1,27 @@
+In cpp, a function is a peace of code block.it is always declared before main funtion.it takes memory in stack.it follows stack rule i.e. LIFO last in first out which is also known as function call stack.
+
+
+ex;
+
+#include<iostream>
+using namespace std;
+
+//declare fuction or define directly before main
+
+int display(int m){
+	return m;
+
+}
+
+int main(){
+
+	int n;
+	cout << "enter an your age"<< endl;
+    cin >>n;
+
+    int age = display(n);
+    cout << "your age is :"<<age;
+} 
+
+Pass by Value : creats a copy and above example is pass by value example in which int m is a copy of passed value i.e n
+
